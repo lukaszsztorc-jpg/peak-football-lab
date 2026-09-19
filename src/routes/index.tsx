@@ -21,6 +21,7 @@ import {
   Video,
   X,
   Zap,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -157,7 +158,7 @@ function Process() {
 }
 
 function Diagnostics() {
-  const items = [[Target,"Umiejętności","Technika indywidualna"],[Zap,"Motoryka","Szybkość, dynamika, koordynacja"],[TimerReset,"Poruszanie","Zmiana kierunku, przyspieszenie, hamowanie"],[BrainCircuit,"Rozumienie gry","Decyzje, pozycja, zachowanie na boisku"]];
+  const items: Array<[LucideIcon, string, string]> = [[Target,"Umiejętności","Technika indywidualna"],[Zap,"Motoryka","Szybkość, dynamika, koordynacja"],[TimerReset,"Poruszanie","Zmiana kierunku, przyspieszenie, hamowanie"],[BrainCircuit,"Rozumienie gry","Decyzje, pozycja, zachowanie na boisku"]];
   return <section id="diagnostyka" className="bg-card py-24 md:py-32"><div className="section-shell">
     <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
       <div className="image-reveal relative min-h-[34rem] overflow-hidden"><img src={sprintImage} alt="Zawodnik podczas testu szybkości i zmiany kierunku" loading="lazy" width={1600} height={1200} className="absolute inset-0 h-full w-full object-cover"/><div className="absolute inset-0 bg-[linear-gradient(0deg,var(--card),transparent_55%)]"/><div className="absolute bottom-7 left-7 rounded-full border border-primary/50 bg-background/75 p-5 backdrop-blur"><Activity className="size-8 text-primary" /></div></div>
@@ -179,7 +180,7 @@ function TrainingPlan() {
 }
 
 function Control() {
-  const items = [[Play,"Mecz","Obserwacja zawodnika"],[Video,"Analiza video","Materiał i analiza zachowań"],[MessageCircle,"Feedback","Wnioski i dalszy plan"]];
+  const items: Array<[LucideIcon, string, string]> = [[Play,"Mecz","Obserwacja zawodnika"],[Video,"Analiza video","Materiał i analiza zachowań"],[MessageCircle,"Feedback","Wnioski i dalszy plan"]];
   return <section className="relative overflow-hidden bg-ink py-24 md:py-32"><img src={analysisImage} alt="Trener analizujący mecz razem z zawodnikiem" loading="lazy" width={1600} height={1200} className="absolute inset-0 h-full w-full object-cover opacity-35"/><div className="absolute inset-0 bg-[linear-gradient(90deg,var(--ink)_25%,color-mix(in_oklab,var(--ink)_75%,transparent))]"/><Network />
     <div className="section-shell relative"><div className="max-w-3xl reveal-up"><SectionLabel>Stały feedback</SectionLabel><h2 className="display-title text-5xl md:text-8xl">Kontrola procesu</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/75">Jestem na Twoim meczu, analizuję postępy, tworzę materiał wideo, przedstawiam efekty i razem wyciągamy wnioski.</p></div>
       <div className="mt-14 grid gap-px bg-foreground/15 md:grid-cols-3">{items.map(([Icon,title,text],i)=>{const I=Icon;return <div key={String(title)} className="bg-ink/75 p-7 backdrop-blur-sm"><I className="size-7 text-gold"/><p className="mt-8 font-display text-sm text-primary">0{i+1}</p><h3 className="mt-2 text-3xl font-bold uppercase">{String(title)}</h3><p className="mt-2 text-sm text-muted-foreground">{String(text)}</p></div>})}</div>
@@ -188,7 +189,7 @@ function Control() {
 }
 
 function Pillars() {
-  const pillars = [[Target,"Technika","text-cyan","Precyzja, kontrola, działanie pod presją."],[BrainCircuit,"Psychologia","text-cyan-soft","Pewność siebie, koncentracja i odporność."],[Dumbbell,"Motoryka","text-burgundy","Siła, szybkość i przygotowanie ruchowe."],[Salad,"Odżywianie","text-gold","Energia, regeneracja i dobre nawyki."]];
+  const pillars: Array<[LucideIcon, string, string, string]> = [[Target,"Technika","text-cyan","Precyzja, kontrola, działanie pod presją."],[BrainCircuit,"Psychologia","text-cyan-soft","Pewność siebie, koncentracja i odporność."],[Dumbbell,"Motoryka","text-burgundy","Siła, szybkość i przygotowanie ruchowe."],[Salad,"Odżywianie","text-gold","Energia, regeneracja i dobre nawyki."]];
   return <section id="wiedza" className="py-24 md:py-32"><div className="section-shell"><div className="reveal-up text-center"><SectionLabel>Pełny potencjał</SectionLabel><h2 className="display-title mx-auto max-w-4xl text-5xl md:text-8xl">Rozwój to więcej<br/>niż trening</h2></div>
     <div className="mt-14 grid gap-px bg-border md:grid-cols-4">{pillars.map(([Icon,title,color,text],i)=>{const I=Icon;return <article key={String(title)} className="group relative min-h-72 overflow-hidden bg-card p-7"><span className="absolute right-4 top-1 font-display text-7xl font-black text-foreground/5">0{i+1}</span><I className={`size-9 ${String(color)}`}/><h3 className="mt-20 text-3xl font-bold uppercase">{String(title)}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{String(text)}</p><div className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-500 group-hover:scale-x-100"/></article>})}</div>
     <p className="mt-10 text-center font-display text-2xl font-semibold uppercase text-foreground/70">Każdy element wpływa na rozwój zawodnika.</p>
