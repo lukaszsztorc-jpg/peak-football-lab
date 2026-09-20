@@ -7,3 +7,12 @@
 - [x] Wydzielić dane marki i powtarzalne treści do czytelnego modułu pod przyszły CMS/WordPress bez zmian wizualnych.
 - [x] Zaktualizować metadane SEO i dane strukturalne marki.
 - [x] Zweryfikować widok desktopowy i mobilny, menu oraz brak poziomego przewijania.
+
+## Aktualne zadanie
+
+- [ ] Wydzielić niezależne sekcje strony do czytelnych komponentów bez zmiany ich treści i kolejności.
+- [ ] Przenieść edytowalne treści, CTA, listy, dane kontaktowe i konfigurację obrazów do centralnego modelu CMS.
+- [ ] Zachować logo, zdjęcia, typografię i kolory jako łatwo wymienne, centralnie zarządzane zasoby.
+- [ ] Zmniejszyć odstępy sekcji hierarchicznie, pozostawiając większy oddech w hero i głównych CTA.
+- [ ] Dodać wyłącznie subtelne separatory tam, gdzie są potrzebne dla czytelności.
+- [ ] Zweryfikować desktop, tablet i mobile, CTA, menu, obrazy oraz brak poziomego przewijania.
