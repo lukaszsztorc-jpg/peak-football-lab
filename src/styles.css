@@ -89,9 +89,9 @@
   --border: oklch(0.36 0.035 232 / 55%);
   --input: oklch(0.3 0.04 235);
   --ring: var(--brand-turquoise);
-  --brand-turquoise: oklch(0.407 0.064 194.7);
+  --brand-turquoise: #0c4d55;
   --cyan: var(--brand-turquoise);
-  --cyan-soft: oklch(0.61 0.095 197);
+  --cyan-soft: color-mix(in oklab, var(--brand-turquoise) 72%, white);
   --burgundy: oklch(0.34 0.13 19);
   --gold: oklch(0.76 0.13 86);
   --ink: oklch(0.09 0.022 242);

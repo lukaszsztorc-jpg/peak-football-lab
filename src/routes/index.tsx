@@ -31,7 +31,7 @@ import sprintImage from "@/assets/stelvio-sprint.jpg";
 import analysisImage from "@/assets/stelvio-analysis.jpg";
 import performanceImage from "@/assets/stelvio-performance.jpg";
 import coachImage from "@/assets/stelvio-coach-placeholder.jpg";
-import logoAsset from "@/assets/stelvio-logo.png.asset.json";
+import logoAsset from "@/assets/stelvio-logo-primary.png.asset.json";
 import { brand, navigation as navItems, processSteps, programs } from "@/content";
 
 export const Route = createFileRoute("/")({
