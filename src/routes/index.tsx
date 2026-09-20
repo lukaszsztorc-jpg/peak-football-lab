@@ -31,13 +31,15 @@ import sprintImage from "@/assets/stelvio-sprint.jpg";
 import analysisImage from "@/assets/stelvio-analysis.jpg";
 import performanceImage from "@/assets/stelvio-performance.jpg";
 import coachImage from "@/assets/stelvio-coach-placeholder.jpg";
+import logoAsset from "@/assets/stelvio-logo.png.asset.json";
+import { brand, navigation as navItems, processSteps, programs } from "@/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stelvio — Indywidualny trening piłkarski Lublin" },
-      { name: "description", content: "Indywidualny trening piłkarski, trening pozycyjny, przygotowanie motoryczne i diagnostyka sportowa młodych zawodników w Lublinie." },
-      { property: "og:title", content: "Stelvio — Rozwijaj swoją grę" },
+      { title: `${brand.name} — Indywidualny trening piłkarski ${brand.location}` },
+      { name: "description", content: "Indywidualny trening piłkarski, trening pozycyjny, przygotowanie motoryczne i diagnostyka sportowa młodych zawodników w Puławach." },
+      { property: "og:title", content: `${brand.name} — Rozwijaj swoją grę` },
       { property: "og:description", content: "Trening szyty na miarę zawodnika: analiza, diagnostyka, plan, trening i kontrola procesu." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -49,37 +51,21 @@ export const Route = createFileRoute("/")({
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "SportsActivityLocation",
-        name: "Stelvio — treningi piłki nożnej",
-        description: "Indywidualny trening piłkarski i diagnostyka sportowa w Lublinie.",
-        telephone: "+48508286090",
-        areaServed: "Lublin",
+        name: brand.name,
+        description: "Indywidualny trening piłkarski i diagnostyka sportowa w Puławach.",
+        telephone: brand.phoneHref,
+        areaServed: brand.location,
+        author: brand.author,
       }),
     }],
   }),
   component: Index,
 });
 
-const navItems = [
-  ["Start", "start"], ["O treningu", "o-treningu"], ["Programy", "programy"],
-  ["Diagnostyka", "diagnostyka"], ["Trener", "trener"], ["Wiedza", "wiedza"], ["Kontakt", "kontakt"],
-];
-const processSteps = ["Analiza", "Diagnostyka", "Plan", "Trening", "Kontrola", "Rozwój"];
-const programs = [
-  ["01", "Trening indywidualny", "Praca 1 na 1 nad konkretnymi elementami gry."],
-  ["02", "Trening pozycyjny", "Rozwój zachowań charakterystycznych dla pozycji zawodnika."],
-  ["03", "Trening motoryczny", "Szybkość, dynamika, koordynacja, siła i zmiana kierunku."],
-  ["04", "Przygotowanie meczowe", "Praca nad konkretnymi wymaganiami zawodnika."],
-  ["05", "Analiza meczowa", "Analiza materiału video i zachowania podczas meczu."],
-  ["06", "Program rozwoju zawodnika", "Długoterminowy proces obejmujący wiele obszarów."],
-];
-
 function Logo() {
-  return <a href="#start" aria-label="Stelvio — strona główna" className="flex items-center gap-2.5">
-    <svg viewBox="0 0 52 52" aria-hidden="true" className="h-10 w-10">
-      <path d="M26 4 5 43h18L26 4Z" fill="var(--cyan)"/><path d="M26 4 47 43H29L26 4Z" fill="var(--burgundy)"/>
-      <path d="M27 13c-8 8 8 9 0 17-6 6 2 8 4 11" fill="none" stroke="var(--gold)" strokeWidth="3.2" strokeLinecap="round"/>
-    </svg>
-    <span className="font-display text-2xl font-extrabold uppercase tracking-[0.12em]">Stelvio</span>
+  return <a href="#start" aria-label={`${brand.name} — strona główna`} className="flex items-center gap-2.5">
+    <img src={logoAsset.url} alt="STELVIO" width={1920} height={1920} className="h-12 w-12 object-contain" />
+    <span className="font-display text-xl font-extrabold tracking-[0.04em] sm:text-2xl">{brand.name}</span>
   </a>;
 }
 
@@ -109,14 +95,14 @@ function Header() {
         {navItems.map(([label, id]) => <a key={id} href={`#${id}`} className="text-[11px] font-bold uppercase tracking-[0.11em] text-foreground/75 transition-colors hover:text-primary">{label}</a>)}
       </nav>
       <div className="hidden items-center gap-5 lg:flex">
-        <a href="tel:+48508286090" className="flex items-center gap-2 text-xs font-bold"><Phone className="size-4 text-primary" />508 286 090</a>
+        <a href={`tel:${brand.phoneHref}`} className="flex items-center gap-2 text-xs font-bold"><Phone className="size-4 text-primary" />{brand.phoneDisplay}</a>
         <Button asChild variant="performance" size="xl"><a href="#kontakt">Umów trening <ArrowRight /></a></Button>
       </div>
       <Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Zamknij menu" : "Otwórz menu"} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
     </div>
     {open && <nav className="mt-3 border-t border-border bg-background px-5 py-5 lg:hidden">
       <div className="flex flex-col">{navItems.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setOpen(false)} className="border-b border-border py-3 font-display text-xl font-bold uppercase">{label}</a>)}</div>
-      <a href="tel:+48508286090" className="mt-5 flex items-center gap-2 text-sm font-bold text-primary"><Phone className="size-4" />508 286 090</a>
+      <a href={`tel:${brand.phoneHref}`} className="mt-5 flex items-center gap-2 text-sm font-bold text-primary"><Phone className="size-4" />{brand.phoneDisplay}</a>
     </nav>}
   </header>;
 }
@@ -232,13 +218,13 @@ function SocialProof() {
 function Contact() {
   const [sent,setSent]=useState(false);
   const submit=(e:FormEvent)=>{e.preventDefault();setSent(true)};
-  return <><section className="relative overflow-hidden bg-ink py-24 text-center md:py-32"><div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,color-mix(in_oklab,var(--cyan)_22%,transparent),transparent_35%),radial-gradient(circle_at_80%_50%,color-mix(in_oklab,var(--burgundy)_32%,transparent),transparent_35%)]"/><Network/><div className="section-shell relative"><p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-gold">Twój następny krok</p><h2 className="display-title text-6xl md:text-9xl">Gotowy na<br/><span className="text-primary">kolejny poziom?</span></h2><p className="mx-auto mt-7 max-w-xl leading-7 text-foreground/70">Zacznijmy od analizy Twojego zawodnika i określenia kierunku rozwoju.</p><div className="mt-9 flex flex-wrap justify-center gap-3"><Button asChild variant="performance" size="xl"><a href="#kontakt">Umów trening <ArrowRight/></a></Button><Button asChild variant="performanceOutline" size="xl"><a href="tel:+48508286090">Skontaktuj się <Phone/></a></Button></div></div></section>
-  <section id="kontakt" className="py-24 md:py-32"><div className="section-shell grid gap-14 lg:grid-cols-[.8fr_1.2fr]"><div><SectionLabel>Kontakt</SectionLabel><h2 className="display-title text-6xl md:text-8xl">Zacznijmy<br/><span className="text-primary">rozmowę</span></h2><a href="tel:+48508286090" className="mt-8 flex items-center gap-4 font-display text-4xl font-bold text-foreground hover:text-primary"><Phone className="size-7 text-primary"/>508 286 090</a><a href="mailto:email@do-uzupelnienia.pl" className="mt-5 flex items-center gap-4 text-sm text-muted-foreground hover:text-primary"><Mail className="size-5"/>E-mail do uzupełnienia</a><div className="mt-8 flex gap-3"><Button variant="outline" size="icon" aria-label="Instagram — profil do uzupełnienia"><Instagram/></Button><Button variant="outline" size="icon" aria-label="Facebook — profil do uzupełnienia"><MessageCircle/></Button></div></div>
+  return <><section className="relative overflow-hidden bg-ink py-24 text-center md:py-32"><div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,color-mix(in_oklab,var(--cyan)_22%,transparent),transparent_35%),radial-gradient(circle_at_80%_50%,color-mix(in_oklab,var(--burgundy)_32%,transparent),transparent_35%)]"/><Network/><div className="section-shell relative"><p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-gold">Twój następny krok</p><h2 className="display-title text-6xl md:text-9xl">Gotowy na<br/><span className="text-primary">kolejny poziom?</span></h2><p className="mx-auto mt-7 max-w-xl leading-7 text-foreground/70">Zacznijmy od analizy Twojego zawodnika i określenia kierunku rozwoju.</p><div className="mt-9 flex flex-wrap justify-center gap-3"><Button asChild variant="performance" size="xl"><a href="#kontakt">Umów trening <ArrowRight/></a></Button><Button asChild variant="performanceOutline" size="xl"><a href={`tel:${brand.phoneHref}`}>Skontaktuj się <Phone/></a></Button></div></div></section>
+  <section id="kontakt" className="py-24 md:py-32"><div className="section-shell grid gap-14 lg:grid-cols-[.8fr_1.2fr]"><div><SectionLabel>Kontakt</SectionLabel><h2 className="display-title text-6xl md:text-8xl">Zacznijmy<br/><span className="text-primary">rozmowę</span></h2><a href={`tel:${brand.phoneHref}`} className="mt-8 flex items-center gap-4 font-display text-4xl font-bold text-foreground hover:text-primary"><Phone className="size-7 text-primary"/>{brand.phoneDisplay}</a><a href={`mailto:${brand.emailHref}`} className="mt-5 flex items-center gap-4 text-sm text-muted-foreground hover:text-primary"><Mail className="size-5"/>{brand.emailDisplay}</a><div className="mt-8 flex gap-3"><Button variant="outline" size="icon" aria-label="Instagram — profil do uzupełnienia"><Instagram/></Button><Button variant="outline" size="icon" aria-label="Facebook — profil do uzupełnienia"><MessageCircle/></Button></div></div>
   <form onSubmit={submit} className="grid gap-5 bg-card p-6 md:grid-cols-2 md:p-9"><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em]">Imię i nazwisko<Input required placeholder="Twoje imię" className="h-12 rounded-none bg-background"/></label><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em]">Telefon<Input required type="tel" placeholder="Numer telefonu" className="h-12 rounded-none bg-background"/></label><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em] md:col-span-2">E-mail<Input required type="email" placeholder="Twój adres e-mail" className="h-12 rounded-none bg-background"/></label><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em] md:col-span-2">Wiadomość<Textarea required placeholder="Napisz krótko, czego potrzebuje zawodnik" className="min-h-32 rounded-none bg-background"/></label><div className="md:col-span-2"><Button type="submit" variant="performance" size="xl">Wyślij wiadomość <ArrowRight/></Button>{sent&&<p role="status" className="mt-4 text-sm text-primary">Dziękujemy. Formularz demonstracyjny — podłączymy wysyłkę po uzupełnieniu docelowego adresu e-mail.</p>}</div></form>
   </div></section></>;
 }
 
-function Footer(){return <footer className="border-t border-border bg-ink py-8"><div className="section-shell flex flex-col gap-5 text-center md:flex-row md:items-center md:justify-between md:text-left"><Logo/><p className="text-xs text-muted-foreground">© 2026 Stelvio. Treningi piłki nożnej w Lublinie.</p><a href="#start" className="text-xs font-bold uppercase tracking-[0.14em] text-primary">Wróć na górę ↑</a></div></footer>}
+function Footer(){return <footer className="border-t border-border bg-ink py-8"><div className="section-shell flex flex-col gap-5 text-center md:flex-row md:items-center md:justify-between md:text-left"><Logo/><p className="text-xs text-muted-foreground">© 2026 {brand.name}. Treningi piłki nożnej w {brand.location}. Realizacja: {brand.author}.</p><a href="#start" className="text-xs font-bold uppercase tracking-[0.14em] text-primary">Wróć na górę ↑</a></div></footer>}
 
 function Index() {
   return <main><Header/><Hero/><Process/><Diagnostics/><TrainingPlan/><Control/><Pillars/><Programs/><Performance/><Coach/><Tailored/><SocialProof/><Contact/><Footer/></main>;
