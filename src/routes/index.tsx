@@ -28,6 +28,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { brand, media, navigation as navItems, pageContent, seo, type IconName } from "@/content";
 
+const iconMap: Record<IconName, LucideIcon> = {
+  activity: Activity,
+  brain: BrainCircuit,
+  circle: CircleDot,
+  dumbbell: Dumbbell,
+  message: MessageCircle,
+  play: Play,
+  salad: Salad,
+  target: Target,
+  timer: TimerReset,
+  video: Video,
+  zap: Zap,
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [

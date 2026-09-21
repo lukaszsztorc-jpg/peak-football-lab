@@ -173,6 +173,8 @@
 }
 
 @utility section-shell { width: min(100% - 2rem, 78rem); margin-inline: auto; }
+@utility section-space { padding-block: 4.5rem; }
+@utility section-space-roomy { padding-block: 5.5rem; }
 @utility display-title { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; line-height: 0.88; }
 @utility reveal-up { animation: reveal-up 0.8s both; animation-timeline: view(); animation-range: entry 8% cover 28%; }
 @utility image-reveal { animation: image-reveal 1s both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
@@ -180,6 +182,11 @@
 @keyframes reveal-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes image-reveal { from { opacity: .35; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
 @keyframes pulse-node { 50% { opacity: .35; transform: scale(.72); } }
+
+@media (min-width: 48rem) {
+  .section-space { padding-block: 6rem; }
+  .section-space-roomy { padding-block: 7rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
