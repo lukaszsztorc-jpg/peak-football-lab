@@ -5,10 +5,10 @@ Zachować obecną stronę, treści, kolejność, branding, zdjęcia, CTA i anima
 
 ## Zakres zmian
 
-### 1. Modularna struktura bez zmiany widoku
-- Wydzielić istniejące sekcje z jednego pliku do niezależnych, opisowo nazwanych komponentów: nagłówek, hero, proces, diagnostyka, plan, kontrola, filary rozwoju, programy, performance, trener, podejście indywidualne, statystyki i opinie, CTA, kontakt oraz stopka.
-- Zachować dokładnie obecną kolejność, HTML, interakcje, animacje i identyfikatory kotwic.
-- Pozostawić współdzielone elementy, takie jak logo, etykieta sekcji i motyw sieci, jako małe komponenty wielokrotnego użytku.
+### 1. Lekka modularizacja bez zmiany widoku
+- Pozostawić istniejące sekcje i ich kolejność w obecnym pliku strony, bez rozbijania każdej sekcji na osobny plik.
+- Wydzielić tylko elementy rzeczywiście współdzielone lub niezależne funkcjonalnie, takie jak logo, etykieta sekcji, motyw sieci i formularz kontaktowy.
+- Zachować dokładnie obecny HTML, interakcje, animacje i identyfikatory kotwic.
 
 ### 2. Warstwa treści gotowa pod CMS
 - Rozszerzyć centralny model treści tak, aby obejmował nagłówki, opisy, CTA, listy, programy, dane kontaktowe, statystyki zastępcze i opinie zastępcze.
@@ -34,7 +34,7 @@ Zachować obecną stronę, treści, kolejność, branding, zdjęcia, CTA i anima
 
 ## Szczegóły techniczne
 - Strona pozostaje aplikacją TanStack; przygotowanie dotyczy czystego rozdziału danych i prezentacji, nie implementacji WordPressa.
-- Model danych będzie możliwy do zastąpienia wynikiem WordPress REST API bez zmiany interfejsów komponentów.
+- Model danych będzie możliwy do zastąpienia wynikiem WordPress REST API bez przebudowy sekcji.
 - Obrazy pozostaną osobnymi assetami i będą przekazywane przez centralną konfigurację mediów.
 - Formularz, menu mobilne, kotwice, SEO i obecne zachowanie strony pozostaną bez zmian.
 
