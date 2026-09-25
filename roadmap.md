@@ -10,9 +10,9 @@
 
 ## Aktualne zadanie
 
-- [ ] Wydzielić niezależne sekcje strony do czytelnych komponentów bez zmiany ich treści i kolejności.
-- [ ] Przenieść edytowalne treści, CTA, listy, dane kontaktowe i konfigurację obrazów do centralnego modelu CMS.
-- [ ] Zachować logo, zdjęcia, typografię i kolory jako łatwo wymienne, centralnie zarządzane zasoby.
-- [ ] Zmniejszyć odstępy sekcji hierarchicznie, pozostawiając większy oddech w hero i głównych CTA.
-- [ ] Dodać wyłącznie subtelne separatory tam, gdzie są potrzebne dla czytelności.
-- [ ] Zweryfikować desktop, tablet i mobile, CTA, menu, obrazy oraz brak poziomego przewijania.
+- [x] Wydzielić niezależne sekcje strony do czytelnych komponentów bez zmiany ich treści i kolejności.
+- [x] Przenieść edytowalne treści, CTA, listy, dane kontaktowe i konfigurację obrazów do centralnego modelu CMS.
+- [x] Zachować logo, zdjęcia, typografię i kolory jako łatwo wymienne, centralnie zarządzane zasoby.
+- [x] Zmniejszyć odstępy sekcji hierarchicznie, pozostawiając większy oddech w hero i głównych CTA.
+- [x] Dodać wyłącznie subtelne separatory tam, gdzie są potrzebne dla czytelności.
+- [x] Zweryfikować desktop, tablet i mobile, CTA, menu, obrazy oraz brak poziomego przewijania.
