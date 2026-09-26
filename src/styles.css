@@ -192,3 +192,21 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* Hero & section motion */
+@keyframes stelvio-drift { 50% { transform: translate3d(6%, 4%, 0) scale(1.08); } }
+@keyframes stelvio-sweep { 0%, 15% { transform: translateX(0); } 60%, 100% { transform: translateX(450%); } }
+@keyframes stelvio-dash { to { stroke-dashoffset: -160; } }
+@keyframes stelvio-ball { 0% { offset-distance: 0%; opacity: 0; } 10% { opacity: .9; } 85% { opacity: .9; } 100% { offset-distance: 100%; opacity: 0; } }
+@keyframes stelvio-node { 50% { opacity: .3; } }
+@keyframes stelvio-particles { to { background-position: 180px 70px, -240px 95px, 210px 0, -280px 0; } }
+@keyframes stelvio-glow { 50% { opacity: .55; transform: scale(1.05); } }
+.stelvio-drift { animation: stelvio-drift 18s ease-in-out infinite; }
+.stelvio-drift-alt { animation: stelvio-drift 22s ease-in-out infinite reverse; }
+.stelvio-sweep { animation: stelvio-sweep 11s ease-in-out infinite; }
+.stelvio-trajectory { animation: stelvio-dash 9s linear infinite; }
+.stelvio-trajectory-alt { animation: stelvio-dash 14s linear infinite reverse; }
+.stelvio-ball { animation: stelvio-ball 7s cubic-bezier(.45,.05,.35,1) infinite; }
+.stelvio-node { animation: stelvio-node 5s ease-in-out infinite; }
+.stelvio-particles { animation: stelvio-particles 60s linear infinite; }
+.stelvio-glow { animation: stelvio-glow 9s ease-in-out infinite; }

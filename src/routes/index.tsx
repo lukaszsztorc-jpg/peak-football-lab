@@ -5,8 +5,7 @@ import {
   ArrowDown,
   ArrowRight,
   BrainCircuit,
-  ChevronRight,
-  CircleDot,
+    CircleDot,
   Dumbbell,
   Instagram,
   Mail,
@@ -115,12 +114,35 @@ function Header() {
   </header>;
 }
 
+function HeroMotion() {
+  return <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="stelvio-drift absolute -left-1/4 top-0 h-[70%] w-[70%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--cyan)_34%,transparent),transparent_65%)] blur-3xl" />
+    <div className="stelvio-drift-alt absolute -right-1/4 bottom-0 h-[60%] w-[60%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--burgundy)_40%,transparent),transparent_65%)] blur-3xl" />
+    <div className="stelvio-sweep absolute inset-y-0 -left-1/3 w-1/3 bg-[linear-gradient(100deg,transparent,color-mix(in_oklab,var(--foreground)_7%,transparent),transparent)]" />
+    <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+      <g stroke="var(--foreground)" strokeOpacity=".08" strokeWidth="1.5">
+        <rect x="760" y="120" width="620" height="660" />
+        <line x1="760" y1="450" x2="1380" y2="450" />
+        <circle cx="1070" cy="450" r="110" />
+        <rect x="960" y="120" width="220" height="110" />
+        <rect x="960" y="670" width="220" height="110" />
+      </g>
+      <path className="stelvio-trajectory" d="M180 780 C 520 520, 820 280, 1260 210" stroke="var(--gold)" strokeOpacity=".7" strokeWidth="2" strokeDasharray="6 10" />
+      <path className="stelvio-trajectory-alt" d="M420 860 C 700 650, 900 620, 1320 560" stroke="var(--cyan-soft)" strokeOpacity=".5" strokeWidth="1.5" strokeDasharray="4 12" />
+      <circle className="stelvio-ball" r="7" fill="var(--foreground)" style={{ offsetPath: "path('M180 780 C 520 520, 820 280, 1260 210')" }} />
+      {[[860,300],[1010,380],[1180,330],[1120,560],[930,610],[1290,470]].map(([x,y],i)=><g key={i} className="stelvio-node" style={{ animationDelay: `${i*0.7}s` }}><circle cx={x} cy={y} r="3.5" fill="var(--cyan-soft)" /><circle cx={x} cy={y} r="14" stroke="var(--cyan-soft)" strokeOpacity=".35" /></g>)}
+    </svg>
+    <div className="network-bg stelvio-particles absolute inset-0 opacity-30" />
+  </div>;
+}
+
 function Hero() {
   return <section id="start" className="relative flex min-h-[92svh] items-end overflow-hidden border-b border-border">
     <img src={media.hero.src} alt={media.hero.alt} width={media.hero.width} height={media.hero.height} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-[64%_center]" />
     <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--ink)_0%,color-mix(in_oklab,var(--ink)_88%,transparent)_37%,color-mix(in_oklab,var(--burgundy)_38%,transparent)_100%)]" />
     <div className="absolute inset-0 bg-[linear-gradient(0deg,var(--background)_0%,transparent_42%)]" />
     <Network className="opacity-35" />
+    <HeroMotion />
     <div className="section-shell relative z-10 pb-16 pt-32 md:pb-20">
       <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-gold">{pageContent.hero.kicker.map((item, index) => <span key={item}>{index > 0 && <span className="mx-2 text-foreground/40">|</span>}{item}</span>)}</p>
       <h1 className="display-title max-w-4xl text-[clamp(4rem,10vw,9.5rem)]">{pageContent.hero.title}<br/><span className="text-primary">{pageContent.hero.titleAccent}</span></h1>
@@ -164,10 +186,18 @@ function Diagnostics() {
 }
 
 function TrainingPlan() {
-  const flow = pageContent.trainingPlan.steps;
-  return <section className="relative overflow-hidden section-space"><div className="absolute inset-y-0 right-0 w-1/3 bg-burgundy/15"/><div className="section-shell relative">
+  const flow = pageContent.trainingPlan.rows;
+  return <section className="relative overflow-hidden section-space bg-[linear-gradient(180deg,var(--card)_0%,var(--background)_35%,color-mix(in_oklab,var(--burgundy)_18%,var(--background))_70%,var(--ink)_100%)]"><div className="stelvio-drift absolute -left-40 top-10 h-96 w-96 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--cyan)_22%,transparent),transparent_70%)] blur-3xl"/><div className="section-shell relative">
     <div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr]"><div className="reveal-up"><SectionLabel>{pageContent.trainingPlan.label}</SectionLabel><h2 className="display-title text-5xl md:text-7xl">{pageContent.trainingPlan.title}<br/><span className="text-primary">{pageContent.trainingPlan.titleAccent}</span></h2><p className="mt-6 max-w-xl leading-7 text-muted-foreground">{pageContent.trainingPlan.description}</p></div>
-      <div className="relative border-l border-primary/40 pl-8 md:grid md:grid-cols-2 md:gap-x-10 md:border-l-0 md:pl-0">{flow.map((item,i)=><div key={item} className="reveal-up relative mb-5 border-b border-border py-5 md:mb-0"><span className="mr-4 font-display text-4xl font-bold text-primary">{String(i+1).padStart(2,"0")}</span><span className="font-display text-2xl font-bold uppercase">{item}</span>{i < flow.length-1 && <ChevronRight className="absolute -bottom-3 right-2 size-5 rotate-90 text-gold md:rotate-0"/>}</div>)}</div>
+      <div className="reveal-up relative"><div className="stelvio-glow absolute -inset-6 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--cyan)_28%,transparent),transparent_70%)] blur-2xl"/>
+        <div role="table" aria-label={pageContent.trainingPlan.title} className="relative overflow-hidden border border-foreground/12 bg-background/40 backdrop-blur-xl">
+          <div role="row" className="hidden grid-cols-[4.5rem_1fr_1.6fr] gap-4 border-b border-foreground/10 bg-foreground/[0.03] px-6 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-gold md:grid">{pageContent.trainingPlan.columns.map(c=><span role="columnheader" key={c}>{c}</span>)}</div>
+          {flow.map((item,i)=><div role="row" key={item.step} className="group grid grid-cols-[3.5rem_1fr] items-center gap-x-4 gap-y-1 border-b border-foreground/10 px-5 py-4 transition-colors last:border-b-0 hover:bg-primary/10 md:grid-cols-[4.5rem_1fr_1.6fr] md:px-6">
+            <span role="cell" className="row-span-2 font-display text-3xl font-bold text-cyan-soft md:row-span-1">{String(i+1).padStart(2,"0")}</span>
+            <span role="cell" className="font-display text-2xl font-bold uppercase">{item.step}</span>
+            <span role="cell" className="text-sm text-muted-foreground">{item.goal}</span>
+          </div>)}
+        </div></div>
     </div>
     <div className="mt-10 h-1 md:mt-12 overflow-hidden bg-border"><div className="h-full w-full origin-left animate-[reveal-up_2s_ease-out_both] bg-[linear-gradient(90deg,var(--cyan),var(--gold),var(--burgundy))]" /></div>
   </div></section>;
@@ -225,10 +255,21 @@ function SocialProof() {
 
 function Contact() {
   const [sent,setSent]=useState(false);
+  const [noTeam,setNoTeam]=useState(false);
+  const fieldLabel="grid gap-2 text-xs font-bold uppercase tracking-[0.12em]";
+  const field="h-12 rounded-none border-foreground/15 bg-background text-base focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/50 md:text-sm";
   const submit=(e:FormEvent)=>{e.preventDefault();setSent(true)};
   return <><section className="section-space-roomy relative overflow-hidden bg-ink text-center"><div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,color-mix(in_oklab,var(--cyan)_22%,transparent),transparent_35%),radial-gradient(circle_at_80%_50%,color-mix(in_oklab,var(--burgundy)_32%,transparent),transparent_35%)]"/><Network/><div className="section-shell relative"><p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-gold">{pageContent.cta.kicker}</p><h2 className="display-title text-6xl md:text-9xl">{pageContent.cta.title}<br/><span className="text-primary">{pageContent.cta.titleAccent}</span></h2><p className="mx-auto mt-7 max-w-xl leading-7 text-foreground/70">{pageContent.cta.description}</p><div className="mt-9 flex flex-wrap justify-center gap-3"><Button asChild variant="performance" size="xl"><a href="#kontakt">{pageContent.cta.primary} <ArrowRight/></a></Button><Button asChild variant="performanceOutline" size="xl"><a href={`tel:${brand.phoneHref}`}>{pageContent.cta.secondary} <Phone/></a></Button></div></div></section>
   <section id="kontakt" className="section-space"><div className="section-shell grid gap-14 lg:grid-cols-[.8fr_1.2fr]"><div><SectionLabel>Kontakt</SectionLabel><h2 className="display-title text-6xl md:text-8xl">Zacznijmy<br/><span className="text-primary">rozmowę</span></h2><a href={`tel:${brand.phoneHref}`} className="mt-8 flex items-center gap-4 font-display text-4xl font-bold text-foreground hover:text-primary"><Phone className="size-7 text-primary"/>{brand.phoneDisplay}</a><a href={`mailto:${brand.emailHref}`} className="mt-5 flex items-center gap-4 text-sm text-muted-foreground hover:text-primary"><Mail className="size-5"/>{brand.emailDisplay}</a><div className="mt-8 flex gap-3"><Button variant="outline" size="icon" aria-label="Instagram — profil do uzupełnienia"><Instagram/></Button><Button variant="outline" size="icon" aria-label="Facebook — profil do uzupełnienia"><MessageCircle/></Button></div></div>
-  <form onSubmit={submit} className="grid gap-5 bg-card p-6 md:grid-cols-2 md:p-9"><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em]">Imię i nazwisko<Input required placeholder="Twoje imię" className="h-12 rounded-none bg-background"/></label><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em]">Telefon<Input required type="tel" placeholder="Numer telefonu" className="h-12 rounded-none bg-background"/></label><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em] md:col-span-2">E-mail<Input required type="email" placeholder="Twój adres e-mail" className="h-12 rounded-none bg-background"/></label><label className="grid gap-2 text-xs font-bold uppercase tracking-[0.12em] md:col-span-2">Wiadomość<Textarea required placeholder="Napisz krótko, czego potrzebuje zawodnik" className="min-h-32 rounded-none bg-background"/></label><div className="md:col-span-2"><Button type="submit" variant="performance" size="xl">Wyślij wiadomość <ArrowRight/></Button>{sent&&<p role="status" className="mt-4 text-sm text-primary">Dziękujemy. Formularz demonstracyjny — podłączymy wysyłkę po uzupełnieniu docelowego adresu e-mail.</p>}</div></form>
+  <form onSubmit={submit} className="grid gap-4 border border-foreground/10 bg-[linear-gradient(160deg,var(--card),color-mix(in_oklab,var(--cyan)_8%,var(--card)))] p-6 md:grid-cols-2 md:p-9">
+    <label className={`${fieldLabel} md:col-span-2`}>Imię i nazwisko<Input required autoComplete="name" placeholder="Twoje imię" className={field}/></label>
+    <label className={fieldLabel}>Wiek zawodnika<select required defaultValue="" className={`${field} w-full border px-3 text-foreground outline-none`}><option value="" disabled>Wybierz wiek</option>{Array.from({length:19},(_,i)=>i+6).map(a=><option key={a} value={a}>{a} lat</option>)}<option value="25+">25+ lat</option></select></label>
+    <div className={fieldLabel}><label htmlFor="team">Obecna drużyna</label><Input id="team" required={!noTeam} disabled={noTeam} placeholder={noTeam?"Brak drużyny":"Nazwa klubu / drużyny"} className={field}/><label className="flex items-center gap-2 text-[11px] font-semibold normal-case tracking-normal text-muted-foreground"><input type="checkbox" checked={noTeam} onChange={e=>setNoTeam(e.target.checked)} className="size-4 accent-[var(--brand-turquoise)]"/>Nie trenuję obecnie w drużynie</label></div>
+    <label className={fieldLabel}>Telefon<Input required type="tel" inputMode="tel" autoComplete="tel" placeholder="Numer telefonu" className={field}/></label>
+    <label className={fieldLabel}>E-mail<Input required type="email" autoComplete="email" placeholder="Twój adres e-mail" className={field}/></label>
+    <label className={`${fieldLabel} md:col-span-2`}>Wiadomość / cel treningu<Textarea required placeholder="Napisz krótko, czego potrzebuje zawodnik" className={`${field} h-auto min-h-28`}/></label>
+    <div className="md:col-span-2"><Button type="submit" variant="performance" size="xl" className="w-full sm:w-auto">Wyślij wiadomość <ArrowRight/></Button>{sent&&<p role="status" className="mt-4 border-l-2 border-primary bg-primary/10 px-4 py-3 text-sm text-foreground">Dziękujemy! Zgłoszenie zostało przyjęte — skontaktujemy się wkrótce. (Formularz demonstracyjny — wysyłkę podłączymy po uzupełnieniu docelowego adresu e-mail.)</p>}</div>
+  </form>
   </div></section></>;
 }
 
