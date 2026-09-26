@@ -80,7 +80,15 @@ export const pageContent = {
     title: "Plan treningowy",
     titleAccent: "i trening indywidualny",
     description: "Tworzę indywidualny plan treningowy dostosowany do deficytów zawodnika oraz rozwoju jego potencjału.",
-    steps: ["Diagnoza", "Cel", "Plan", "Trening", "Monitoring", "Efekt"],
+    columns: ["Etap", "Krok", "Cel"],
+    rows: [
+      { step: "Diagnoza", goal: "Testy i ocena punktu wyjścia zawodnika" },
+      { step: "Cel", goal: "Określenie priorytetów rozwoju" },
+      { step: "Plan", goal: "Dobór ćwiczeń do deficytów i potencjału" },
+      { step: "Trening", goal: "Indywidualne jednostki z jasnym celem" },
+      { step: "Monitoring", goal: "Pomiar postępów i korekty planu" },
+      { step: "Efekt", goal: "Widoczny progres na boisku" },
+    ],
   },
   control: {
     label: "Stały feedback",
