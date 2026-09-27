@@ -114,6 +114,17 @@ function Header() {
   </header>;
 }
 
+const meshPoints: [number, number][] = [[0,130],[70,70],[150,110],[40,210],[130,190],[230,150],[210,250],[320,190],[300,280],[90,300],[410,230],[390,300],[480,255],[560,262],[620,268]];
+const meshLinks: [number, number][] = [[0,1],[1,2],[0,3],[3,4],[2,4],[2,5],[4,5],[4,6],[5,7],[6,7],[6,8],[3,9],[9,6],[7,10],[8,10],[8,11],[10,11],[10,12],[11,12],[12,13],[13,14],[7,8],[1,5]];
+function MeshWing({ side }: { side: "left" | "right" }) {
+  const right = side === "right";
+  const color = right ? "var(--burgundy)" : "var(--cyan-soft)";
+  return <svg viewBox="0 0 640 400" className={`stelvio-mesh absolute top-[38%] h-[45%] w-[48%] ${right ? "right-0 -scale-x-100" : "left-0"}`} style={{ animationDelay: right ? "-4s" : "0s" }} fill="none" preserveAspectRatio="none">
+    <g stroke={right ? "var(--gold)" : color} strokeOpacity=".35" strokeWidth="1">{meshLinks.map(([a,b],i)=><line key={i} x1={meshPoints[a][0]} y1={meshPoints[a][1]} x2={meshPoints[b][0]} y2={meshPoints[b][1]} />)}</g>
+    {meshPoints.map(([x,y],i)=><circle key={i} className="stelvio-node" style={{ animationDelay: `${(i%5)*0.8}s` }} cx={x} cy={y} r={i>12?2:3} fill="var(--gold)" fillOpacity=".85" />)}
+  </svg>;
+}
+
 function HeroMotion() {
   return <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
     <div className="stelvio-drift absolute -left-1/4 top-0 h-[70%] w-[70%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--cyan)_34%,transparent),transparent_65%)] blur-3xl" />
@@ -133,6 +144,9 @@ function HeroMotion() {
       {[[860,300],[1010,380],[1180,330],[1120,560],[930,610],[1290,470]].map(([x,y],i)=><g key={i} className="stelvio-node" style={{ animationDelay: `${i*0.7}s` }}><circle cx={x} cy={y} r="3.5" fill="var(--cyan-soft)" /><circle cx={x} cy={y} r="14" stroke="var(--cyan-soft)" strokeOpacity=".35" /></g>)}
     </svg>
     <div className="network-bg stelvio-particles absolute inset-0 opacity-30" />
+    <div className="stelvio-glow absolute left-1/2 top-[58%] h-64 w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,color-mix(in_oklab,var(--foreground)_10%,transparent),transparent_70%)] blur-2xl" />
+    <MeshWing side="left" />
+    <MeshWing side="right" />
   </div>;
 }
 

@@ -210,3 +210,7 @@
 .stelvio-node { animation: stelvio-node 5s ease-in-out infinite; }
 .stelvio-particles { animation: stelvio-particles 60s linear infinite; }
 .stelvio-glow { animation: stelvio-glow 9s ease-in-out infinite; }
+@keyframes stelvio-mesh { 50% { transform: translateY(-10px); opacity: .75; } }
+.stelvio-mesh { animation: stelvio-mesh 12s ease-in-out infinite; opacity: .9; }
+.stelvio-mesh.-scale-x-100 { animation-name: stelvio-mesh-r; }
+@keyframes stelvio-mesh-r { 0%,100% { transform: scaleX(-1); } 50% { transform: scaleX(-1) translateY(-10px); opacity: .75; } }
