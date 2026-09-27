@@ -16,3 +16,11 @@
 - [x] Zmniejszyć odstępy sekcji hierarchicznie, pozostawiając większy oddech w hero i głównych CTA.
 - [x] Dodać wyłącznie subtelne separatory tam, gdzie są potrzebne dla czytelności.
 - [x] Zweryfikować desktop, tablet i mobile, CTA, menu, obrazy oraz brak poziomego przewijania.
+
+## Ujednolicenie systemu wizualnego z Hero
+
+- [ ] Ujednolicić tła, kontrast, linie, nagłówki, numery i stany interaktywne wszystkich sekcji z językiem Hero.
+- [ ] Przebudować wizualnie grid programów bez zmiany treści, numeracji, kolejności ani funkcjonalności.
+- [ ] Usunąć pojedyncze burgundowe wyróżnienie karty 06 i przypadkowe warianty kolorystyczne pozostałych kart.
+- [ ] Zachować subtelne efekty, obecną strukturę strony i brak nowych funkcji lub sekcji.
+- [ ] Zweryfikować całą stronę na desktopie, tablecie i mobile, w tym przyciski, nagłówki, separatory, stopkę i brak poziomego przewijania.
