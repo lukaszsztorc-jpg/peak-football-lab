@@ -120,7 +120,7 @@ function MeshWing({ side }: { side: "left" | "right" }) {
   const right = side === "right";
   const color = right ? "var(--burgundy)" : "var(--cyan-soft)";
   return <svg viewBox="0 0 640 400" className={`stelvio-mesh absolute top-[38%] h-[45%] w-[48%] ${right ? "right-0 -scale-x-100" : "left-0"}`} style={{ animationDelay: right ? "-4s" : "0s" }} fill="none" preserveAspectRatio="none">
-    <g stroke={right ? "var(--gold)" : color} strokeOpacity=".35" strokeWidth="1">{meshLinks.map(([a,b],i)=><line key={i} x1={meshPoints[a][0]} y1={meshPoints[a][1]} x2={meshPoints[b][0]} y2={meshPoints[b][1]} />)}</g>
+    <g stroke={right ? "var(--gold)" : color} strokeOpacity=".35" strokeWidth="1">{meshLinks.map(([a,b],i)=>{const p1=meshPoints[a]!, p2=meshPoints[b]!; return <line key={i} x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]} />;})}</g>
     {meshPoints.map(([x,y],i)=><circle key={i} className="stelvio-node" style={{ animationDelay: `${(i%5)*0.8}s` }} cx={x} cy={y} r={i>12?2:3} fill="var(--gold)" fillOpacity=".85" />)}
   </svg>;
 }
